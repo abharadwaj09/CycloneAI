@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f1f5f9;
+  --foreground: #0f172a;
+  
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  
+  --accent: #059669;
+  
+  --alert-green: #22C55E;
+  --alert-yellow: #EAB308;
+  --alert-orange: #F97316;
+  --alert-red: #EF4444;
+}
+
+body {
+  color: var(--foreground);
+  background: #f1f5f9;
+  background-attachment: fixed;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Meteorological & Oceanic Animations */
+@keyframes oceanWave {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+@keyframes oceanRipple {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+}
+
+@keyframes pulseAlert {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Cyclone Rotations (Northern Hemisphere - Anti-clockwise) */
+@keyframes spinCounterClockwise {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes spinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cycloneEyePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(220, 38, 38, 0.9), 0 0 35px rgba(239, 68, 68, 0.6); }
+  50% { transform: scale(1.2); box-shadow: 0 0 25px rgba(220, 38, 38, 1), 0 0 50px rgba(239, 68, 68, 0.8); }
+}
+
+@keyframes galePulseRing {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  70% { opacity: 0.4; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes feederBandSpiral {
+  0% { transform: rotate(360deg) scale(0.95); opacity: 0.7; }
+  50% { transform: rotate(180deg) scale(1.05); opacity: 0.9; }
+  100% { transform: rotate(0deg) scale(0.95); opacity: 0.7; }
+}
+
+/* Realistic Slanted Falling Rain Streaks */
+@keyframes slantedRainfall {
+  0% {
+    transform: translate(20px, -40px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-30px, 90px);
+    opacity: 0;
+  }
+}
+
+@keyframes rainSplash {
+  0% { transform: scale(0.2); opacity: 0.8; }
+  60% { transform: scale(1.4); opacity: 0.4; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-wave {
+  animation: oceanWave 6s ease-in-out infinite;
+}
+
+.animate-cyclone-core {
+  animation: spinCounterClockwise 2.5s linear infinite;
+}
+
+.animate-cyclone-feeder {
+  animation: spinCounterClockwise 5s linear infinite;
+}
+
+.animate-cyclone-outer {
+  animation: spinCounterClockwise 9s linear infinite;
+}
+
+.animate-cyclone-eye {
+  animation: cycloneEyePulse 2s ease-in-out infinite;
+}
+
+.animate-gale-ring-1 {
+  animation: galePulseRing 3s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+.animate-gale-ring-2 {
+  animation: galePulseRing 3s cubic-bezier(0.2, 0.8, 0.4, 1) infinite 1.5s;
+}
+
+.animate-pulse-alert {
+  animation: pulseAlert 2s infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Slanted rain particle class */
+.rain-streak {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(56, 189, 248, 0.8) 50%, rgba(14, 165, 233, 1) 100%);
+  border-radius: 9999px;
+  animation: slantedRainfall 0.65s linear infinite;
+}
+
+/* Recharts tooltip styling */
+.recharts-default-tooltip {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Leaflet base */
+.leaflet-container {
+  font-family: inherit !important;
+  z-index: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15) !important;
+}
